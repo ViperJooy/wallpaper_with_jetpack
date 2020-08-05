@@ -1,5 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wallPaperFragment">
+    <fragment
+        android:id="@+id/wallPaperFragment"
+        android:name="com.viper.wallpaper.WallPaperFragment"
+        android:label="fragment_wall_paper"
+        tools:layout="@layout/fragment_wall_paper" >
+        <action
+            android:id="@+id/action_wallpaperFragment_to_blankFragment"
+            app:destination="@id/blankFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="false"
+            app:popUpToInclusive="false"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.viper.wallpaper.BlankFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="no" />
+    </fragment>
 </navigation>
