@@ -1,6 +1,7 @@
 package com.viper.wallpaper.logic.network
 
 
+import com.viper.wallpaper.logic.model.RequestData
 import com.viper.wallpaper.logic.network.api.WallPaperService
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -14,8 +15,8 @@ import kotlin.coroutines.suspendCoroutine
 object WallPaperNetwork {
     private val wallpaperService = ServiceCreator.create(WallPaperService::class.java)
 
-    suspend fun getJson(headers: Map<String, String>, requestBody: RequestBody) =
-        wallpaperService.getJson(headers, requestBody).await()
+    suspend fun getJson(headers: Map<String, String>, requestData: RequestData) =
+        wallpaperService.getJson(headers, requestData).await()
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

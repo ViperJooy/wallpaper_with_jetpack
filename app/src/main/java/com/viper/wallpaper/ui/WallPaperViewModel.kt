@@ -1,24 +1,22 @@
 package com.viper.wallpaper.ui
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.viper.wallpaper.logic.Repository
 import com.viper.wallpaper.logic.model.Record
-import okhttp3.RequestBody
-import kotlin.math.log
+import com.viper.wallpaper.logic.model.RequestData
 
 class WallPaperViewModel : ViewModel() {
 
-    private val wallPaperLiveData = MutableLiveData<RequestBody>()
+    private val wallPaperLiveData = MutableLiveData<RequestData>()
     val wallPaperList = ArrayList<Record>()
 
-    val getJsonLiveData = Transformations.switchMap(wallPaperLiveData) { requestBody ->
-        Repository.getJson(requestBody)
+    val getJsonLiveData = Transformations.switchMap(wallPaperLiveData) { requestData ->
+        Repository.getJson(requestData)
     }
 
-    fun getJson(requestBody: RequestBody) {
-        wallPaperLiveData.value = requestBody
+    fun getJson(requestData: RequestData) {
+        wallPaperLiveData.value = requestData
     }
 }
