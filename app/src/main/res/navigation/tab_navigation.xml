@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tab_navigation"
+    app:startDestination="@id/wallPaperFragment">
+
+    <keep_state_fragment
+        android:id="@+id/wallPaperFragment"
+        android:name="com.viper.wallpaper.ui.wallpaper.fragment.WallPaperFragment"
+        android:label="fragment_wall_paper"
+        tools:layout="@layout/fragment_wall_paper" />
+    <keep_state_fragment
+        android:id="@+id/liveFragment"
+        android:name="com.viper.wallpaper.ui.live.fragment.LiveFragment"
+        android:label="fragment_live"
+        tools:layout="@layout/fragment_live" />
+    <keep_state_fragment
+        android:id="@+id/videoFragment"
+        android:name="com.viper.wallpaper.ui.video.fragment.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" />
+</navigation>

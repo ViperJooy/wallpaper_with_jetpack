@@ -1,4 +1,4 @@
-package com.viper.wallpaper.ui
+package com.viper.wallpaper.ui.wallpaper.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations

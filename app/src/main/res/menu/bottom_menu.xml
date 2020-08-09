@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/wallPaperFragment"
+        android:icon="@drawable/baseline_wallpaper_black_24dp"
+        android:title="WALLPAPER" />
+    <item
+        android:id="@+id/liveFragment"
+        android:icon="@drawable/baseline_live_tv_black_24dp"
+        android:title="LIVE" />
+    <item
+        android:id="@+id/videoFragment"
+        android:icon="@drawable/baseline_video_library_black_24dp"
+        android:title="VIDEO" />
+</menu>

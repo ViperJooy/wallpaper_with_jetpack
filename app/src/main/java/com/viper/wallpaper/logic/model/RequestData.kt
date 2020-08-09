@@ -6,6 +6,6 @@ package com.viper.wallpaper.logic.model
  * Description:
  */
 data class RequestData(
-    val target: String,
+    val target: String?,
     val pageNum: Int
 )
