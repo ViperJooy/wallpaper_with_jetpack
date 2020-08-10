@@ -1,18 +1,27 @@
 package com.viper.wallpaper.logic.network;
 
+import com.viper.wallpaper.utils.Constants
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object ServiceCreator {
 
-private const val BASE_URL = "https://api.zzzmh.cn/"
-
-private val retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+    private val okHttpClient = RetrofitUrlManager.getInstance()
+        .with(OkHttpClient.Builder())
+        .readTimeout(5, TimeUnit.SECONDS)
+        .connectTimeout(5, TimeUnit.SECONDS)
         .build()
 
-        fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(Constants.WALLPAPER_API_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(okHttpClient)
+        .build()
 
-        inline fun <reified T> create(): T = create(T::class.java)
+    fun <T> create(serviceClass: Class<T>): T = retrofit.create(serviceClass)
+
+    inline fun <reified T> create(): T = create(T::class.java)
 }

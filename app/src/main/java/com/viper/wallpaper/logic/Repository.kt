@@ -2,7 +2,7 @@ package com.viper.wallpaper.logic
 
 import androidx.lifecycle.liveData
 import com.viper.wallpaper.logic.model.RequestData
-import com.viper.wallpaper.logic.network.WallPaperNetwork
+import com.viper.wallpaper.logic.network.Network
 import kotlinx.coroutines.Dispatchers
 import kotlin.coroutines.CoroutineContext
 
@@ -18,7 +18,7 @@ object Repository {
             "Content-Type" to "application/json"
         )
 
-        val wallPaperResponse = WallPaperNetwork.getJson(map, requestData)
+        val wallPaperResponse = Network.getJson(map, requestData)
         if (wallPaperResponse.msg == "success") {
             val record = wallPaperResponse.result.records
             Result.success(record)

@@ -1,18 +1,14 @@
 package com.viper.wallpaper.ui.wallpaper.adapter
 
-import android.media.Image
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
-import com.squareup.picasso.Picasso
 import com.stfalcon.imageviewer.StfalconImageViewer
 import com.viper.wallpaper.R
 import com.viper.wallpaper.logic.model.Record
-import com.viper.wallpaper.utils.showToast
 
 /**
  * Created by viper.
@@ -34,20 +30,20 @@ class WallPaperAdapter(
         val imageList = mutableListOf<String>()
 
         for (wallpaper in wallPaperList) {
-//            val img = "https://w.wallhaven.cc/full/${record.i.substring(0, 2)}/wallhaven-${record.i}.jpg"
+//            val img = "https://w.wallhaven.cc/full/${wallpaper.i.substring(0, 2)}/wallhaven-${wallpaper.i}.jpg"
             val img = "https://th.wallhaven.cc/small/${wallpaper.i.substring(0, 2)}/${wallpaper.i}.jpg"
             imageList.add(img)
         }
-
         holder.ivWallPaper.setOnClickListener {
             val position = holder.adapterPosition
+
             StfalconImageViewer.Builder<String>(
                 holder.ivWallPaper.context,
                 imageList
             ) { view, image ->
-                Picasso.get().load(image).into(view)
+                view.load(image)
             }.withStartPosition(position)
-                .withTransitionFrom(holder.ivWallPaper)
+//                .withTransitionFrom()
                 .allowSwipeToDismiss(true)
                 .show()
         }

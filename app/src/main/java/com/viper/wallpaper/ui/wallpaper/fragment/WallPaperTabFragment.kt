@@ -12,8 +12,6 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.squareup.picasso.Picasso
-import com.stfalcon.imageviewer.StfalconImageViewer
 import com.viper.wallpaper.R
 import com.viper.wallpaper.logic.model.RequestData
 import com.viper.wallpaper.ui.wallpaper.adapter.WallPaperAdapter
@@ -73,9 +71,6 @@ class WallPaperTabFragment : Fragment() {
 
     }
 
-    private fun loadImage() {
-
-    }
 
     private val spanCount: Int
         get() {
