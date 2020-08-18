@@ -44,15 +44,4 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.bottom_menu,menu)
         nv_bottom_menu.setupWithNavController(menu,navController)
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.bottom_menu, menu)
-//        nv_bottom_menu.setupWithNavController(menu!!, navController)
-//        return true
-//    }
-//
-//    override fun onSupportNavigateUp(): Boolean {
-//        navController.navigateUp()
-//        return true
-//    }
 }

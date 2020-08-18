@@ -29,6 +29,11 @@ object Network {
     suspend fun getJson(headers: Map<String, String>, requestData: RequestData) =
         wallpaperService.getJson(headers, requestData).await()
 
+    @Provides
+    @Singleton
+    suspend fun getFlow(headers: Map<String, String>, requestData: RequestData) =
+        wallpaperService.getJson(headers, requestData).await()
+
     @ExperimentalCoroutinesApi
     suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

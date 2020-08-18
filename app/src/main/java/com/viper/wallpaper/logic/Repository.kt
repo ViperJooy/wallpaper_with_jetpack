@@ -1,8 +1,14 @@
 package com.viper.wallpaper.logic
 
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.viper.wallpaper.logic.model.RequestData
 import com.viper.wallpaper.logic.network.Network
+import com.viper.wallpaper.ui.wallpaper.adapter.WallPaperDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,20 +23,32 @@ import kotlin.coroutines.CoroutineContext
 @InstallIn(ActivityComponent::class)
 class Repository @Inject constructor() {
 
+    //添加请求头验证
+    private val map = mutableMapOf(
+        "access" to "36a1b1711b3978f92ad4bf5f405f43d26cdd0a037eddfdc233d7674b9462e802",
+        "location" to "bz.zzzmh.cn",
+        "sign" to "50f9a39a0de9dc692baddf4d9ece3582",
+        "timestamp" to "1596463830570",
+        "Content-Type" to "application/json"
+    )
+
     @Provides
     @Singleton
     fun getJson(requestData: RequestData) = fire(Dispatchers.IO) {
-
-        //添加请求头验证
-        val map = mutableMapOf(
-            "access" to "36a1b1711b3978f92ad4bf5f405f43d26cdd0a037eddfdc233d7674b9462e802",
-            "location" to "bz.zzzmh.cn",
-            "sign" to "50f9a39a0de9dc692baddf4d9ece3582",
-            "timestamp" to "1596463830570",
-            "Content-Type" to "application/json"
-        )
-
         val wallPaperResponse = Network.getJson(map, requestData)
+        if (wallPaperResponse.msg == "success") {
+            val record = wallPaperResponse.result.records
+            Result.success(record)
+        } else {
+            Result.failure(RuntimeException("response msg is ${wallPaperResponse.msg}"))
+        }
+
+    }
+
+    @Provides
+    @Singleton
+    fun getFlow(requestData: RequestData) = fire(Dispatchers.IO) {
+        val wallPaperResponse = Network.getFlow(map, requestData)
         if (wallPaperResponse.msg == "success") {
             val record = wallPaperResponse.result.records
             Result.success(record)

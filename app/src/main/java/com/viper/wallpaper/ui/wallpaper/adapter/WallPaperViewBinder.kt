@@ -19,7 +19,7 @@ import com.viper.wallpaper.logic.model.Record
  */
 
 class WallPaperViewBinder(private val wallPaperList: List<Record>) :
-    ItemViewBinder<Record, WallPaperViewBinder.ViewHolder>() {
+    ItemViewBinder<Record, WallPaperViewBinder.ViewHolder>(){
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): ViewHolder {
         return ViewHolder(
             inflater.inflate(R.layout.wallpaper_item, parent, false)
