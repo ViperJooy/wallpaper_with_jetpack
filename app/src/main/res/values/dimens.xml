@@ -2,4 +2,5 @@
 <resources>
     <dimen name="wallpaper_item_min_width">200dp</dimen>
     <dimen name="cardview_corner_radius">2dp</dimen>
+    <dimen name="normal_space">12dp</dimen>
 </resources>

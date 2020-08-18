@@ -11,10 +11,10 @@
         android:id="@+id/nv_bottom_menu"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        app:backgroundColor="@color/colorPrimary"
         app:itemHorizontalTranslationEnabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:backgroundColor="@color/colorPrimary"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu" />
 
     <fragment
         android:id="@+id/fragment"

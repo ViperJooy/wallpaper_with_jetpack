@@ -1,6 +1,7 @@
 package com.viper.wallpaper.utils
 
 import android.content.Context
+import android.widget.TextView
 import android.widget.Toast
 
 /**

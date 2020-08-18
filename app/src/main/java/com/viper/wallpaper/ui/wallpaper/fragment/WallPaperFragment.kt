@@ -11,7 +11,6 @@ import com.viper.wallpaper.R
 import com.viper.wallpaper.ui.wallpaper.adapter.WallPaperFragmentStateAdapter
 import kotlinx.android.synthetic.main.fragment_wall_paper.*
 
-
 class WallPaperFragment : Fragment() {
 
     companion object {
@@ -43,6 +42,7 @@ class WallPaperFragment : Fragment() {
 
         TabLayoutMediator(tab_layout, viewPager2) { tab, position ->
             tab.text = tabs_title[position]
+            viewPager2.setCurrentItem(tab.position, true)
         }.attach()
     }
 }

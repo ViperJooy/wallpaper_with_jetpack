@@ -3,10 +3,22 @@ package com.viper.wallpaper.logic
 import androidx.lifecycle.liveData
 import com.viper.wallpaper.logic.model.RequestData
 import com.viper.wallpaper.logic.network.Network
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.coroutines.CoroutineContext
 
-object Repository {
+@Module
+@InstallIn(ActivityComponent::class)
+class Repository @Inject constructor() {
+
+    @Provides
+    @Singleton
     fun getJson(requestData: RequestData) = fire(Dispatchers.IO) {
 
         //添加请求头验证
@@ -28,8 +40,8 @@ object Repository {
 
     }
 
-
-    private fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
+    @ExperimentalCoroutinesApi
+    fun <T> fire(context: CoroutineContext, block: suspend () -> Result<T>) =
         liveData<Result<T>>(context) {
             val result = try {
                 block()
