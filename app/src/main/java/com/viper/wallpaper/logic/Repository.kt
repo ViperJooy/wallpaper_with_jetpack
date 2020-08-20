@@ -1,14 +1,8 @@
 package com.viper.wallpaper.logic
 
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
 import com.viper.wallpaper.logic.model.RequestData
 import com.viper.wallpaper.logic.network.Network
-import com.viper.wallpaper.ui.wallpaper.adapter.WallPaperDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

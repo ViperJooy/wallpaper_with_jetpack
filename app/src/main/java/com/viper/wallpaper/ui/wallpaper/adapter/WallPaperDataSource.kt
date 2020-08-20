@@ -24,7 +24,7 @@ class WallPaperDataSource(private val requestData: RequestData) : PagingSource<I
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Record> {
         return try {
-            val page = params.key ?: 1
+            val page = params.key ?: 0
             Log.d("page", "current_page: $page")
             val requestData = RequestData(requestData.target, page)
             //获取网络数据
@@ -33,7 +33,7 @@ class WallPaperDataSource(private val requestData: RequestData) : PagingSource<I
                 //需要加载的数据
                 data = result.result.records,
                 //如果可以往上加载更多就设置该参数，否则不设置
-                prevKey = null,
+                prevKey = if (page == 0) null else page - 1,
                 //加载下一页的key 如果传null就说明到底了
                 nextKey = if (result.result.current == result.result.pages) null else page + 1
             )
