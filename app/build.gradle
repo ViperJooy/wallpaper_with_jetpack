@@ -73,4 +73,7 @@ dependencies {
     implementation 'com.github.stfalcon:stfalcon-imageviewer:1.0.1'
     implementation 'me.jessyan:retrofit-url-manager:1.4.0'//切换retrofit base url
     implementation 'com.drakeet.multitype:multitype:4.2.0'
+
+    implementation 'com.rousetime.android:android-startup:1.0.3'
+    implementation 'com.github.liangjingkanji:StateLayout:1.0.13'
 }

@@ -34,8 +34,8 @@ class WallPaperTabFragment : Fragment() {
     //使用hilt依赖注入写法
     private val viewModel: WallPaperViewModel by viewModels()
 
-    //    private lateinit var wallPaperAdapter: MultiTypeAdapter
     private lateinit var wallPaperAdapter: WallPaperPagingAdapter
+    lateinit var requestData: RequestData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,15 +55,13 @@ class WallPaperTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val requestData = RequestData(param, 1)
-//        viewModel.getJson(requestData)
 
-//        wallPaperAdapter = MultiTypeAdapter()
-//        wallPaperAdapter.register(
-//            WallPaperViewBinder(
-//                viewModel.wallPaperList
-//            )
-//        )
+        state.onRefresh {
+            // 一般在这里进行网络请求
+            requestData = RequestData(param, 1)
+
+        }.showLoading()
+
         wallPaperAdapter = WallPaperPagingAdapter()
 
         val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -80,28 +78,14 @@ class WallPaperTabFragment : Fragment() {
                 )
             )
             layoutManager = GridLayoutManager(context, spanCount)
-//            adapter = wallPaperAdapter
-            adapter = wallPaperAdapter.withLoadStateFooter(LoadStateAdapter(wallPaperAdapter::retry))
+//            adapter = wallPaperAdapter.withLoadStateFooter(LoadStateAdapter(wallPaperAdapter::retry))
+            adapter = wallPaperAdapter
         }
-//        rvWallpaper.adapter = wallPaperAdapter.withLoadStateFooter(PostsLoadStateAdapter(wallPaperAdapter))
-
-//        viewModel.getJsonLiveData.observe(viewLifecycleOwner, Observer { result ->
-//            val places = result.getOrNull()
-//            if (places != null) {
-//                viewModel.wallPaperList.clear()
-//                viewModel.wallPaperList.addAll(places)
-//                wallPaperAdapter.items = viewModel.wallPaperList
-//                wallPaperAdapter.notifyDataSetChanged()
-//            } else {
-//                Toast.makeText(context, "未获取到任何数据", Toast.LENGTH_SHORT).show()
-//                result.exceptionOrNull()?.printStackTrace()
-//            }
-//        })
-
 
         viewModel.getFlow(requestData)
         //获取数据并渲染UI
         viewModel.getFlowLiveData.observe(viewLifecycleOwner, Observer {
+            state.showContent()
             lifecycleScope.launchWhenCreated {
                 wallPaperAdapter.submitData(it)
             }
@@ -120,14 +104,6 @@ class WallPaperTabFragment : Fragment() {
         }
     }
 
-    //添加请求头验证
-    private val map = mutableMapOf(
-        "access" to "36a1b1711b3978f92ad4bf5f405f43d26cdd0a037eddfdc233d7674b9462e802",
-        "location" to "bz.zzzmh.cn",
-        "sign" to "50f9a39a0de9dc692baddf4d9ece3582",
-        "timestamp" to "1596463830570",
-        "Content-Type" to "application/json"
-    )
     private val spanCount: Int
         get() {
             val width = requireActivity().window.decorView.width

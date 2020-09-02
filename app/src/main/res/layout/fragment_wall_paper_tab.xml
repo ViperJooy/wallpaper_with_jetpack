@@ -6,9 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.wallpaper.fragment.WallPaperFragment">
 
+    <com.drake.statelayout.StateLayout
+        android:id="@+id/state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
             android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -17,4 +22,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </com.drake.statelayout.StateLayout>
 </FrameLayout>

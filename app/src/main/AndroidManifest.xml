@@ -12,12 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <provider
-            android:name=".MyContentProvider"
-            android:authorities="viper"
-            android:enabled="true"
-            android:exported="true"></provider>
 
+        <provider
+            android:name="com.rousetime.android_startup.provider.StartupProvider"
+            android:authorities="${applicationId}.android_startup"
+            android:exported="false">
+
+            <meta-data
+                android:name="com.viper.wallpaper.AppStartup"
+                android:value="android.startup" />
+
+        </provider>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

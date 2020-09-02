@@ -5,4 +5,5 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="BackColor1">#FF2E2E2E</color>
     <color name="overlay_image">#00FFFFFF</color>
+    <color name="textSecond">#bdbdbd</color>
 </resources>
