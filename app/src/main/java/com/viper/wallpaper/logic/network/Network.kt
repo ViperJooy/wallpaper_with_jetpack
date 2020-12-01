@@ -2,7 +2,7 @@ package com.viper.wallpaper.logic.network
 
 
 import com.viper.wallpaper.logic.model.RequestData
-import com.viper.wallpaper.logic.network.api.WallPaperService
+import com.viper.wallpaper.logic.network.api.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +12,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.RuntimeException
-import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -22,17 +21,16 @@ import kotlin.coroutines.suspendCoroutine
 @InstallIn(ActivityComponent::class)
 object Network {
 
-    private val wallpaperService = ServiceCreator.create(WallPaperService::class.java)
+    private val apiService = ServiceCreator.create(ApiService::class.java)
 
     @Provides
     @Singleton
-    suspend fun getJson(headers: Map<String, String>, requestData: RequestData) =
-        wallpaperService.getJson(headers, requestData).await()
+    suspend fun getWallPaperListFlow(headers: Map<String, String>, requestData: RequestData) =
+        apiService.getWallPaperList(headers, requestData).await()
 
     @Provides
     @Singleton
-    suspend fun getFlow(headers: Map<String, String>, requestData: RequestData) =
-        wallpaperService.getJson(headers, requestData).await()
+    suspend fun getCateListFlow() = apiService.getCateList().await()
 
     @ExperimentalCoroutinesApi
     suspend fun <T> Call<T>.await(): T {

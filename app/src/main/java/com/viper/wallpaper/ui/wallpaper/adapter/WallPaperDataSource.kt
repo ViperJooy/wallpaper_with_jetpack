@@ -2,7 +2,7 @@ package com.viper.wallpaper.ui.wallpaper.adapter
 
 import android.util.Log
 import androidx.paging.PagingSource
-import com.viper.wallpaper.logic.model.Record
+import com.viper.wallpaper.logic.model.wallpaper.Record
 import com.viper.wallpaper.logic.model.RequestData
 import com.viper.wallpaper.logic.network.Network
 
@@ -28,7 +28,7 @@ class WallPaperDataSource(private val requestData: RequestData) : PagingSource<I
             Log.d("page", "current_page: $page")
             val requestData = RequestData(requestData.target, page)
             //获取网络数据
-            val result = Network.getJson(map, requestData)
+            val result = Network.getWallPaperListFlow(map, requestData)
             LoadResult.Page(
                 //需要加载的数据
                 data = result.result.records,

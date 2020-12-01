@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tab_navigation"
-    app:startDestination="@id/wallPaperFragment">
+    app:startDestination="@id/wallPaperTabFragment">
 
     <keep_state_fragment
-        android:id="@+id/wallPaperFragment"
-        android:name="com.viper.wallpaper.ui.wallpaper.fragment.WallPaperFragment"
+        android:id="@+id/wallPaperTabFragment"
+        android:name="com.viper.wallpaper.ui.wallpaper.fragment.WallPaperTabFragment"
         android:label="fragment_wall_paper"
-        tools:layout="@layout/fragment_wall_paper" />
+        tools:layout="@layout/fragment_wall_paper_tab" />
     <keep_state_fragment
         android:id="@+id/liveFragment"
-        android:name="com.viper.wallpaper.ui.live.fragment.LiveFragment"
+        android:name="com.viper.wallpaper.ui.live.fragment.LiveTabFragment"
         android:label="fragment_live"
-        tools:layout="@layout/fragment_live" />
+        tools:layout="@layout/fragment_live_tab" />
     <keep_state_fragment
         android:id="@+id/videoFragment"
         android:name="com.viper.wallpaper.ui.video.fragment.VideoFragment"

@@ -1,5 +1,6 @@
 package com.viper.wallpaper.logic
 
+import android.util.Log
 import androidx.lifecycle.liveData
 import com.viper.wallpaper.logic.model.RequestData
 import com.viper.wallpaper.logic.network.Network
@@ -28,8 +29,8 @@ class Repository @Inject constructor() {
 
     @Provides
     @Singleton
-    fun getJson(requestData: RequestData) = fire(Dispatchers.IO) {
-        val wallPaperResponse = Network.getJson(map, requestData)
+    fun getWallPaperListFlow(requestData: RequestData) = fire(Dispatchers.IO) {
+        val wallPaperResponse = Network.getWallPaperListFlow(map, requestData)
         if (wallPaperResponse.msg == "success") {
             val record = wallPaperResponse.result.records
             Result.success(record)
@@ -41,13 +42,13 @@ class Repository @Inject constructor() {
 
     @Provides
     @Singleton
-    fun getFlow(requestData: RequestData) = fire(Dispatchers.IO) {
-        val wallPaperResponse = Network.getFlow(map, requestData)
-        if (wallPaperResponse.msg == "success") {
-            val record = wallPaperResponse.result.records
-            Result.success(record)
+    fun getCateListFlow() = fire(Dispatchers.IO) {
+        val categoryResponse = Network.getCateListFlow()
+        if (categoryResponse.code == 0) {
+            val cate2Info = categoryResponse.data.cate2Info
+            Result.success(cate2Info)
         } else {
-            Result.failure(RuntimeException("response msg is ${wallPaperResponse.msg}"))
+            Result.failure(RuntimeException("response msg is ${categoryResponse.code}"))
         }
 
     }

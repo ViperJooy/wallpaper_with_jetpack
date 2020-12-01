@@ -1,4 +1,4 @@
-package com.viper.wallpaper.logic.model
+package com.viper.wallpaper.logic.model.wallpaper
 
 data class WallPaperResponse(
     val code: Int,

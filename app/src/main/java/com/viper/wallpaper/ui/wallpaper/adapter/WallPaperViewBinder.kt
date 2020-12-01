@@ -1,6 +1,5 @@
 package com.viper.wallpaper.ui.wallpaper.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import coil.api.load
 import com.drakeet.multitype.ItemViewBinder
 import com.stfalcon.imageviewer.StfalconImageViewer
 import com.viper.wallpaper.R
-import com.viper.wallpaper.logic.model.Record
+import com.viper.wallpaper.logic.model.wallpaper.Record
 
 /**
  * Created by viper.
